@@ -1,0 +1,28 @@
+{
+    "environmentType": "local",
+    "envConfig": {
+        "local": {
+            "port": 5000,
+            "dbHost": "192.168.1.61",
+            "dbConnectionString": "mongodb://127.0.0.1/nector",
+            "SMTPTransport": ""
+        },
+        "dev": {
+            "port": 5000,
+            "dbHost": "",
+            "dbConnectionString": "mongodb://127.0.0.1/nector",
+            "SMTPTransport": ""
+        
+        },
+
+        "prod": {
+            "port": 5000,
+            "dbHost": "",
+            "dbConnectionString": "",
+            "SMTPTransport": ""
+        
+
+        }
+
+    }
+}

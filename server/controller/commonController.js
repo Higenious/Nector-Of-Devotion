@@ -25,6 +25,18 @@ function registerUser(req, res){
 }
 
 
+
+
+
+
+function dailyDarshan(req, res, next){
+    console.log('upload API Called');
+    
+    res.send('success');
+
+}
+
+
 // login user 
 
 function loginUser(req, res){
@@ -64,4 +76,6 @@ module.exports.loginUser = loginUser;
 module.exports.forgetPassword = forgetPassword;
 module.exports.resetpassword = resetpassword;
 module.exports.event = event;
+module.exports.dailyDarshan = dailyDarshan;
+
 
