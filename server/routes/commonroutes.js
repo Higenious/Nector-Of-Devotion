@@ -1,34 +1,46 @@
 var express          =  require('express');
 var router           =  express.Router();
 var commoncontroller =  require('../controller/commonController');
-const multer = require('multer');
-var upload = multer({ dest: 'uploads/' })
+var multer = require('multer');
 var app   = express()
-//app.use(express.static('data/img'));
-app.use(express.static(__dirname + 'uploads'))
-//storage
+router.use(express.static(__dirname + '/public/uploads'));
+router.use('/uploads', express.static(__dirname + '/public'));
+
+//Storage
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, 'uploads/')
+      cb(null, 'public/uploads/')
     },
     filename: function (req, file, cb) {
       cb(null, file.originalname);
     }
   })
 
-  //var upload   =  multer({ dest: 'uploads/' });
 var upload = multer({ storage: storage });
 
-router.get('/uploads', function(req, res){
+router.get('/upload', function(req, res){
     res.sendFile('index.html');
 });
 
-
-router.post('/api/darshan/daily', upload.any(),function(req, res, next){
+router.post('/api/darshan/daily', upload.any(), function (req, res, next) {
+    // req.body contains the text fields
     console.log('upload API Called');
     console.log(req.files);
-    res.send('success');
+    var response = {
+      message: "files uploaded successfully",
+      statuscode :200,
+      status      : true
+       
+    }
+    res.send(response);
   });
+
+
+ router.get("/image.png", (req, res) => {
+  res.sendFile(path.join(__dirname, "./uploads/image.png"));
+});
+
+
 
 
 //router

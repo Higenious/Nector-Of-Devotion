@@ -7,7 +7,14 @@ var path = require('path');
 var nodemon = require('nodemon');
 const multer = require('multer');
 var upload = multer({ dest: 'uploads/' })
+// put the HTML file containing your form in a directory named "public" (relative to where this script is located)
+app.get("/", express.static(path.join(__dirname, "/public/uploads")));
+app.use("/public",express.static(__dirname + '/public/uploads'));
 
+app.use('/uploads', express.static(__dirname + '/public'));
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
 
 //Internal dependencies
@@ -43,6 +50,11 @@ app.get('/', (req, res)=>{
     console.log('welcome to application');
     res.send('welcome to Dashboard ');
 })
+
+//  getting images  from uploads fodler;l.k,jmnhgbfrkl;/.jyt4/.;klujte31
+app.get('/', app.use("/public",express.static(__dirname + '/public/uploads')),function(req, res){
+    res.send('succes to bring');
+});
 
 // import all routes
 app.all('*', commonRoutes);
